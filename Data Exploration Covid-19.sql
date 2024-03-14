@@ -5,7 +5,6 @@ BEGIN --CHOOSE THE DATA
 	ORDER BY 1,2
 END
 
-
 BEGIN --DEATH PERCENTAGE
 	SELECT Location, Date, Total_Cases, Total_Deaths, Population,
 	 (Total_Deaths/Total_Cases)*100 DeathPercentage
@@ -14,7 +13,6 @@ BEGIN --DEATH PERCENTAGE
 	ORDER BY 1,2
 END
 
-
 BEGIN --INFECTED PERCENTAGE
 	SELECT Location, Date, Population, Total_Cases, Total_Deaths,
 	 (Total_Cases/Population)*100 InfectedPercentage
@@ -22,7 +20,6 @@ BEGIN --INFECTED PERCENTAGE
 	WHERE Iso_Code NOT LIKE '%OWID%'
 	ORDER BY 1,2
 END
-
 
 BEGIN --HIGHEST INFECTION RATE
 	SELECT Location, Population, MAX(Total_Cases) InfectionCount,
@@ -33,7 +30,6 @@ BEGIN --HIGHEST INFECTION RATE
 	ORDER BY InfectedCount desc
 END
 
-
 BEGIN --HIGHEST DEATH COUNT
 	SELECT Location, MAX(CAST(Total_Deaths AS INT)) DeathCount
 	FROM [Portfolio Projects]..CovidDeaths
@@ -41,7 +37,6 @@ BEGIN --HIGHEST DEATH COUNT
 	GROUP BY Location, Population
 	ORDER BY DeathCount desc
 END
-
 
 BEGIN --GLOBAL NUMBERS EVERYDAY
 	SELECT Date, SUM(New_Cases) TotalCases, SUM(CAST(New_Deaths AS INT)) TotalDeaths,
@@ -51,7 +46,6 @@ BEGIN --GLOBAL NUMBERS EVERYDAY
 	GROUP BY Date
 	ORDER BY 1,2
 END
-
 
 BEGIN --TOTAL VACCINATIONS EVERYDAY
 	WITH CTE1 (Continent, Location, Date, Population, New_Vaccinations, Total_Vaccinations)
